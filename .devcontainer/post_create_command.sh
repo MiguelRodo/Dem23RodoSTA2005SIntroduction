@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-echo 'options(radian.editing_mode = "vi")' >> "$HOME/.radian_profile"
+echo 'options(radian.auto_match = FALSE)' >> "$HOME/.radian_profile"

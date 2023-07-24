@@ -7,6 +7,7 @@
 			"installRMarkdown": true,
 			"installRadian": true,
 			"installVscDebugger": false,
+			"installJupyterLab": true,
 			"version": "4.3.1",
 			"pakVersion": "devel",
 			"vscodeRSupport": "full",
@@ -17,5 +18,16 @@
 			"version": "latest"
 		}
   },
-	"postCreateCommand": "./.devcontainer/post_create_command.sh" 
+	"postCreateCommand": "./.devcontainer/post_create_command.sh",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"GitHub.copilot",
+				"GitHub.copilot-chat",
+				"REditorSupport.r",
+				"sourcegraph.cody-ai",
+				"bierner.markdown-preview-github-styles"
+			]
+		}
+	}
 }
