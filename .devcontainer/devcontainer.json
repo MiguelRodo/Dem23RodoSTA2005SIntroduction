@@ -7,7 +7,7 @@
 			"installRMarkdown": true,
 			"installRadian": true,
 			"installVscDebugger": false,
-			"installJupyterLab": true,
+			"installJupyterlab": true,
 			"version": "4.3.1",
 			"pakVersion": "devel",
 			"vscodeRSupport": "full",
