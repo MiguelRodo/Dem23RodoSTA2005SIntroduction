@@ -7,7 +7,7 @@
 			"installRMarkdown": true,
 			"installRadian": true,
 			"installVscDebugger": false,
-			"installJupyterlab": true,
+			"installJupyterlab": false,
 			"version": "4.3.1",
 			"pakVersion": "devel",
 			"vscodeRSupport": "full",
@@ -27,7 +27,6 @@
 				"REditorSupport.r",
 				"sourcegraph.cody-ai",
 				"bierner.markdown-preview-github-styles",
-				"ms-toolsai.jupyter",
 				"quarto.quarto"
 			]
 		}

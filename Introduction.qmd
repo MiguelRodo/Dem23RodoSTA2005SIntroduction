@@ -1,3 +1,0 @@
-# Introduction to linear regression
-
-dat <- read.csv("C:/Users/User/Documents/2022/STA2005S/Data/Advertising.csv", header = TRUE
