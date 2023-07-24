@@ -15,7 +15,7 @@
 		"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {
 			"installTinyTex": true,
 			"version": "latest"
-		},
-		"postCreateCommand": "./.devcontainer/post_create_command.sh" 
-  }
+		}
+  },
+	"postCreateCommand": "./.devcontainer/post_create_command.sh" 
 }
