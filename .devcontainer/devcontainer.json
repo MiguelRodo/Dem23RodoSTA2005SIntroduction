@@ -27,7 +27,8 @@
 				"REditorSupport.r",
 				"sourcegraph.cody-ai",
 				"bierner.markdown-preview-github-styles",
-				"ms-toolsai.jupyter"
+				"ms-toolsai.jupyter",
+				"quarto.quarto"
 			]
 		}
 	}
