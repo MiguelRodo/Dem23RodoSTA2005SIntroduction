@@ -1,7 +1,7 @@
 ---
 title: "Introductory example of linear regression"
-author: "Miguel Rodo"
-output:
+author: "Miguel Rodo (with thanks to Prof. Little and Yovna Junglee)"
+format:
   html:
     toc: true
     toc_float: true
@@ -12,6 +12,12 @@ output:
     number_sections: true
     self-contained: true
 ---
+
+## Introduction
+
+This is an example analysis of a simple dataset to illustrate the use of linear regression.
+
+Extra details, particularly those related to programming, are kept inside expandable "folds" (click on the triangle to the left of the fold to expand it) if you're viewing the HTML or inside HTML tags if you're viewing the Rmd file.
 
 ## Problem statement
 
@@ -189,25 +195,52 @@ fit_tv
 
 However, if we want to find out what the effect of TV on sales is (the estimate), how accurate that estimate is (the estimate's standard error) and how compatible the data are with no effect (the p-value), we'll need to use the `summary` function on the fitted model object to generate extra statistics and estimates:
 
-#### Estimates
+#### Estimates and inference
 
 ```{r}
 summary(fit_tv)
 ```
 
-As we can see, each one unit increase in TV spending increases sales by 0.047.
- - The 95% confidence interval for this effect is roughly (0.042, 0.052), which is probably precise enough, given the purpose.
- - The p-value is minute.
+The `summary` function gives the following output:
+
+- `Call`:
+  - This is the command that fit the model.
+- `Residuals`:
+  - This is a five-number summary of the residuals (the difference between the actual and fitted response values).
+  - Since the residuals are not scaled (i.e. not divided by standard deviation), their magnitude is less important than symmetry around zero. That said, typically one would use the residuals in a plot rather than examine this line.
+- `Coefficients`:
+  - These are the estimated values of the parameters (`Estimate`), along with the accuracy thereof (`Std. Error`) as well as the test-statistic (`t value`) and p-value (`Pr(>|t|)`) for testing the null hypothesis that the parameter is zero.
+  - `(Intercept)` means $\beta_0$.
+  - As we can see, each one unit increase in TV spending increases sales by 0.047.
+  - The 95% confidence interval for this effect is roughly (0.042, 0.052), which is probably precise enough, given the purpose.
+ - The p-value is minute ($<2*10^{-16}$).
+  - The `Signif. codes` maps the number of stars next to the p-values to the range the star indicates.
+- `Residual standard error`:
+  - This is the estimate of $\sigma$, i.e. the standard deviation of the response.
+    - It is also the square root of the average squared distance of fitted values from the actual values.
+  - The degrees of freedom is the sample size (200) less the number of parameters estimated (2).
+  - The actual value is not particularly meaningful as it is scaled by the response variable.
+- `Multiple R-squared` and `Adjusted R-squared`: 
+  - These are measures of the proportion of variation in the response variable (`y_i`) captured by the model.
+  - The `Adjusted R-squared` is the `Multiple R-squared` penalised for the number of parameters estimated. 
+  - Both of these measures lie between 0 and 1, with higher values indicating more variation captured.
+- `F-statistic`:
+  - This is a "global" test for the nullity (i.e. zero-ness) of all the parameters except the intercept.
+  - The first number (312.1) is the test statistic, the second two are the $F$ distribution's degrees of freedom under the null and the third is the p-value. 
+ 
+
+#### Displaying results graphically
 
 The plot below displays some of the key quantities associated with the data and the model:
 
 ![](_data_raw/reg_img_exp.png)
 
-- $\beta_0$: mean sales when TV spending is zero
-- $\beta_1$: The per-unit increase in mean sales for each unit increase in TV spending
+- $\hat{\beta}_0$: estimated mean sales when TV spending is zero
+- $\hat{\beta}_1$: The estime per-unit increase in mean sales for each unit increase in TV spending
 - $y_i$: The response value for the $i$-th observation
 - $\hat{y}_i$: The fitted value for the $i$-th observation
-- $\epsilon_i$: The residual for the $i$-th observation (different between actual and fitted response value, i.e. $y_i-\hat{y}_i$)
+- $\hat{\epsilon}_i$: The estimated residual for the $i$-th observation (different between actual and fitted response value, i.e. $y_i-\hat{y}_i$)
+  - Note that it is more correct to use $\hat{\epsilon}_i$ than $\epsilon_i$, as the residuals are estimated (since the true value of the mean response is not known), but in practice this is not strictly adhered to. Use of the caret (i.e. the hat, $\textasciicircum$) for the estimated coefficients is important, however.
 
 #### Fitted values and residuals
 
@@ -222,7 +255,7 @@ beta_1 <- coef_vec[2]
 round(beta_0 + beta_1 * 100, 1)
 ```
 
-## Modelling sales against TV, radio and newspaper
+## Modelling sales against TV, radio and newspaperk
 
 Now that we've examined sales against TV, let's examine sales against all three explanatory variables.
 
@@ -244,9 +277,9 @@ Let's examine the detailed inferential output from the `summary` function:
 summary(fit_all)
 ```
 
-- Radio spending clearly associated with sales, and newspaper spending not.
-- There has been little change in the inference regarding the effect of TV advertising spend on sales.
-  - The only (subtle) change is that we now can confirm (in addition to the data exploration) that the effect of TV is not driven by an association between TV and radio.
+The model output reveals that radio spending is clearly associated with sales, while newspaper spending does not show a significant effect. The inference regarding the effect of TV advertising spending on sales remains largely unchanged from the previous model.
+
+The only (subtle) change is that we now can confirm (in addition to the data exploration) that the effect of TV is not driven by an association between TV and radio.
 
 ## Connection to future lessons
 
